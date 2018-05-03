@@ -170,38 +170,38 @@ endfunction
 
 call s:h("Normal",        {"bg": s:bg, "fg": s:norm})
 call s:h("Cursor",        {"bg": s:blue, "fg": s:norm })
-call s:h("Comment",       {"fg": s:medium_gray, "gui": "italic", "cterm": "italic"})
+call s:h("Comment",       {"fg": s:medium_gray})
 
-call s:h("Constant",      {"fg": s:cyan})
+call s:h("Constant",      {"gui": "underline", "cterm": "underline"})
 hi! link String           Constant
 hi! link Character        Constant
 hi! link Number           Constant
 hi! link Boolean          Constant
 hi! link Float            Constant
 
-call s:h("Identifier",    {"fg": s:dark_blue})
+hi! link Identifier       Normal
+hi! link Operator         Identifier
 hi! link Function         Identifier
 
-call s:h("Statement",     {"fg": s:green})
+call s:h("Statement",     {"fg": s:norm_subtle, "gui": "bold", "cterm": "bold"})
 hi! link Conditonal       Statement
 hi! link Repeat           Statement
 hi! link Label            Statement
-hi! link Operator         Statement
 hi! link Keyword          Statement
 hi! link Exception        Statement
 
-call s:h("PreProc",       {"fg": s:red})
-hi! link Include          PreProc
-hi! link Define           PreProc
-hi! link Macro            PreProc
-hi! link PreCondit        PreProc
+hi! link PreProc          Normal
+hi! link Include          Statement
+hi! link Define           Statement
+hi! link Macro            Statement
+hi! link PreCondit        Statement
 
-call s:h("Type",          {"fg": s:purple})
-hi! link StorageClass     Type
-hi! link Structure        Type
-hi! link Typedef          Type
+hi! link Type             Normal
+hi! link StorageClass     Statement
+hi! link Structure        Statement
+hi! link Typedef          Statement
 
-call s:h("Special",       {"fg": s:pink})
+hi! link Special          Normal
 hi! link SpecialChar      Special
 hi! link Tag              Special
 hi! link Delimiter        Special
@@ -220,17 +220,19 @@ call s:h("SpecialKey",    {"fg": s:light_green})
 call s:h("NonText",       {"fg": s:bg_subtle})
 call s:h("Directory",     {"fg": s:dark_blue})
 call s:h("ErrorMsg",      {"fg": s:pink})
-call s:h("IncSearch",     {"bg": s:yellow, "fg": s:light_black})
-call s:h("Search",        {"bg": s:bg_subtle})
+call s:h("Search",        {"bg": s:yellow, "fg": s:light_black})
+hi! link IncSearch        Search
 call s:h("MoreMsg",       {"fg": s:medium_gray, "gui": "bold", "cterm": "bold"})
-hi! link ModeMsg MoreMsg
+hi! link ModeMsg          MoreMsg
 call s:h("LineNr",        {"fg": s:bg_subtle})
-call s:h("CursorLineNr",  {"fg": s:blue, "bg": s:bg_very_subtle})
+call s:h("CursorLineNr",  {"bg": s:bg_very_subtle, "fg": s:norm_subtle, "gui": "bold", "cterm": "bold"})
 call s:h("Question",      {"fg": s:red})
-call s:h("StatusLine",    {"bg": s:bg_very_subtle})
+call s:h("StatusLine",    {"bg": s:norm, "fg": s:bg})
+call s:h("StatusLineNC",  {"bg": s:bg_very_subtle, "fg": s:norm})
+call s:h("StatusLineTL",  {"bg": s:norm, "fg": s:bg})
 call s:h("Conceal",       {"fg": s:norm})
-call s:h("StatusLineNC",  {"bg": s:bg_very_subtle, "fg": s:medium_gray})
 call s:h("VertSplit",     {"bg": s:bg_very_subtle, "fg": s:bg_very_subtle})
+hi! link VertSplit        Normal
 call s:h("Title",         {"fg": s:dark_blue})
 call s:h("Visual",        {"bg": s:visual})
 call s:h("VisualNOS",     {"bg": s:bg_subtle})
@@ -242,7 +244,7 @@ call s:h("DiffAdd",       {"bg": s:bg_subtle, "fg": s:green})
 call s:h("DiffDelete",    {"bg": s:bg_subtle, "fg": s:red})
 call s:h("DiffChange",    {"bg": s:bg_subtle, "fg": s:dark_yellow})
 call s:h("DiffText",      {"bg": s:bg_subtle, "fg": s:dark_blue})
-call s:h("SignColumn",    {"fg": s:light_green})
+call s:h("SignColumn",    {"fg": s:blue})
 
 if has("gui_running")
   call s:h("SpellBad",    {"gui": s:sp_un, "sp": s:red})
@@ -259,15 +261,15 @@ call s:h("Pmenu",         {"fg": s:norm, "bg": s:bg_subtle})
 call s:h("PmenuSel",      {"fg": s:norm, "bg": s:blue})
 call s:h("PmenuSbar",     {"fg": s:norm, "bg": s:bg_subtle})
 call s:h("PmenuThumb",    {"fg": s:norm, "bg": s:bg_subtle})
-call s:h("TabLine",       {"fg": s:norm, "bg": s:bg_very_subtle})
-call s:h("TabLineSel",    {"fg": s:blue, "bg": s:bg_subtle, "gui": "bold", "cterm": "bold"})
-call s:h("TabLineFill",   {"fg": s:norm, "bg": s:bg_very_subtle})
+call s:h("TabLine",       {"bg": s:bg_subtle, "fg": s:norm})
+call s:h("TabLineSel",    {"bg": s:norm, "fg": s:bg})
+call s:h("TabLineFill",   {"bg": s:bg_very_subtle, "fg": s:norm})
 call s:h("CursorColumn",  {"bg": s:bg_very_subtle})
 call s:h("CursorLine",    {"bg": s:bg_very_subtle})
 call s:h("ColorColumn",   {"bg": s:bg_subtle})
 
 " remainder of syntax highlighting
-call s:h("MatchParen",    {"bg": s:bg_subtle, "fg": s:norm})
+hi! link MatchParen       Statement
 call s:h("qfLineNr",      {"fg": s:medium_gray})
 
 " hi helpHyperTextJump guifg=#5FAFD7 ctermfg=74
